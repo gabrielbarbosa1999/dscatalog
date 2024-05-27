@@ -1,7 +1,6 @@
 package dev.gabrielbarbosa.DSCatalog.controllers;
 
 import dev.gabrielbarbosa.DSCatalog.dto.CategoryDTO;
-import dev.gabrielbarbosa.DSCatalog.entities.Category;
 import dev.gabrielbarbosa.DSCatalog.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -37,6 +35,12 @@ public class CategoryController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(category.getId()).toUri();
         return ResponseEntity.created(uri).body(category);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CategoryDTO> updated(@PathVariable Long id, @RequestBody CategoryDTO categoryDTO) {
+        CategoryDTO category = categoryService.updated(id, categoryDTO);
+        return ResponseEntity.ok().body(category);
     }
 
 }

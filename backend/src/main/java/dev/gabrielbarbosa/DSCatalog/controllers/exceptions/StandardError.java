@@ -1,7 +1,5 @@
 package dev.gabrielbarbosa.DSCatalog.controllers.exceptions;
 
-import java.time.Instant;
-
 public class StandardError {
 
     private String message;
