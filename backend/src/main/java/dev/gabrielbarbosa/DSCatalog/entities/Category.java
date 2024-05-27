@@ -1,5 +1,6 @@
 package dev.gabrielbarbosa.DSCatalog.entities;
 
+import dev.gabrielbarbosa.DSCatalog.dto.CategoryDTO;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -20,6 +21,10 @@ public class Category {
     public Category(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Category(CategoryDTO categoryDTO) {
+        this.name = categoryDTO.getName();
     }
 
     public Long getId() {

@@ -29,4 +29,9 @@ public class CategoryService {
         return new CategoryDTO(category);
     }
 
+    public CategoryDTO insert(CategoryDTO categoryDTO) {
+        Category category = categoryRepository.save(new Category(categoryDTO));
+        return new CategoryDTO(category);
+    }
+
 }
