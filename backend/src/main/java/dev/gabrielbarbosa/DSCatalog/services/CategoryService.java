@@ -6,7 +6,9 @@ import dev.gabrielbarbosa.DSCatalog.repositories.CategoryRepository;
 import dev.gabrielbarbosa.DSCatalog.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -35,7 +37,7 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryDTO updated(Long id, CategoryDTO categoryDTO) {
+    public CategoryDTO update(Long id, CategoryDTO categoryDTO) {
         try {
             Category category = categoryRepository.getReferenceById(id);
             category.setName(categoryDTO.getName());
@@ -44,4 +46,17 @@ public class CategoryService {
             throw new ResourceNotFoundException("CATEGORY ID " + id + " NAO ENCONTRADA.");
         }
     }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void delete(Long id) {
+        if (!categoryRepository.existsById(id)) {
+            throw new ResourceNotFoundException("CATEGORY ID " + id + " NAO ENCONTRADA.");
+        }
+        try {
+            categoryRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new ResourceNotFoundException("ESTA CATEGORIA ESTÁ SENDO USADA.");
+        }
+    }
+
 }
