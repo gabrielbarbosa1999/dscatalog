@@ -2,12 +2,10 @@ package dev.gabrielbarbosa.DSCatalog.dto;
 
 import dev.gabrielbarbosa.DSCatalog.entities.Category;
 import dev.gabrielbarbosa.DSCatalog.entities.Product;
-import jakarta.persistence.Column;
 
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class ProductDTO {
 

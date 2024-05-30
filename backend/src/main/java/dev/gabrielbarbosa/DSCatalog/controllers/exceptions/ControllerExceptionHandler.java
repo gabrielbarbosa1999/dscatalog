@@ -1,7 +1,6 @@
 package dev.gabrielbarbosa.DSCatalog.controllers.exceptions;
 
 import dev.gabrielbarbosa.DSCatalog.services.exceptions.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
