@@ -1,5 +1,6 @@
 package dev.gabrielbarbosa.DSCatalog.entities;
 
+import dev.gabrielbarbosa.DSCatalog.dto.ProductDTO;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -43,6 +44,15 @@ public class Product {
         this.price = price;
         this.imgUrl = imgUrl;
         this.date = date;
+    }
+
+    public Product(ProductDTO productDTO) {
+        this.id = productDTO.getId();
+        this.name = productDTO.getName();
+        this.description = productDTO.getDescription();
+        this.price = productDTO.getPrice();
+        this.imgUrl = productDTO.getImgUrl();
+        this.date = productDTO.getDate();
     }
 
     public Long getId() {
@@ -110,4 +120,11 @@ public class Product {
         return Objects.hashCode(id);
     }
 
+    public void update(ProductDTO productDTO) {
+        this.name = productDTO.getName();
+        this.description = productDTO.getDescription();
+        this.price = productDTO.getPrice();
+        this.imgUrl = productDTO.getImgUrl();
+        this.date = productDTO.getDate();
+    }
 }
