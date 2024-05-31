@@ -69,7 +69,7 @@ public class ProductService {
         try {
             productRepository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
-            throw new ResourceNotFoundException("ESTE PRODUTO ESTÁ SENDO USADA.");
+            throw new ResourceNotFoundException("ESTE PRODUCT ESTÁ SENDO USADA.");
         }
     }
 

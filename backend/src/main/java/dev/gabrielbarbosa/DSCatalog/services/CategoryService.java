@@ -56,7 +56,7 @@ public class CategoryService {
         try {
             categoryRepository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
-            throw new ResourceNotFoundException("ESTA CATEGORIA ESTÁ SENDO USADA.");
+            throw new ResourceNotFoundException("ESTA CATEGORY ESTÁ SENDO USADA.");
         }
     }
 
