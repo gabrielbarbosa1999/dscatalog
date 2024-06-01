@@ -4,28 +4,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.gabrielbarbosa.DSCatalog.dto.ProductDTO;
 import dev.gabrielbarbosa.DSCatalog.entities.Category;
 import dev.gabrielbarbosa.DSCatalog.entities.Product;
-import dev.gabrielbarbosa.DSCatalog.services.ProductService;
-import dev.gabrielbarbosa.DSCatalog.services.exceptions.DatabaseException;
-import dev.gabrielbarbosa.DSCatalog.services.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.time.Instant;
-import java.util.List;
 import java.util.Set;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
