@@ -5,6 +5,7 @@ import dev.gabrielbarbosa.DSCatalog.entities.Category;
 import dev.gabrielbarbosa.DSCatalog.entities.Product;
 import dev.gabrielbarbosa.DSCatalog.repositories.CategoryRepository;
 import dev.gabrielbarbosa.DSCatalog.repositories.ProductRepository;
+import dev.gabrielbarbosa.DSCatalog.services.exceptions.DatabaseException;
 import dev.gabrielbarbosa.DSCatalog.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,7 @@ public class ProductService {
         try {
             productRepository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
-            throw new ResourceNotFoundException("ESTE PRODUCT ESTÁ SENDO USADA.");
+            throw new DatabaseException("ESTE PRODUCT ESTÁ SENDO USADA.");
         }
     }
 
