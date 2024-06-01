@@ -53,7 +53,7 @@ public class ProductService {
             Product product = productRepository.getReferenceById(id);
             product.update(productDTO);
             productDTO.getCategories().forEach(category -> {
-                Category referenceById = categoryRepository.findById(category.getId()).get();
+                Category referenceById = categoryRepository.getReferenceById(category.getId());
                 product.getCategories().add(referenceById);
             });
             return new ProductDTO(productRepository.save(product));
