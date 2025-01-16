@@ -1,5 +1,7 @@
 package dev.gabrielbarbosa.DSCatalog.entities;
 
+import dev.gabrielbarbosa.DSCatalog.dto.UserDTO;
+import dev.gabrielbarbosa.DSCatalog.dto.UserInsertDTO;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -18,11 +20,12 @@ public class User {
 
     private String lastName;
 
+    @Column(unique = true)
     private String email;
 
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tb_user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -35,6 +38,20 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
+    }
+
+    public User(UserInsertDTO userDTO) {
+        this.firstName = userDTO.getFirstName();
+        this.lastName = userDTO.getLastName();
+        this.email = userDTO.getEmail();
+        this.password = userDTO.getPassword();
+    }
+
+    public User(UserInsertDTO userDTO, String password) {
+        this.firstName = userDTO.getFirstName();
+        this.lastName = userDTO.getLastName();
+        this.email = userDTO.getEmail();
         this.password = password;
     }
 
@@ -94,4 +111,19 @@ public class User {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
+    public void update(UserInsertDTO userInsertDTO) {
+        this.firstName = userInsertDTO.getFirstName();
+        this.lastName = userInsertDTO.getLastName();
+        this.email = userInsertDTO.getEmail();
+    }
+
+    public void adicionarRole(Role role) {
+        this.roles.add(role);
+    }
+
+    public void limparRoles() {
+        this.roles.clear();
+    }
+
 }
