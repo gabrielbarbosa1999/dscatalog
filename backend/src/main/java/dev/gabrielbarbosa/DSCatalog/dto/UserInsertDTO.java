@@ -1,14 +1,20 @@
 package dev.gabrielbarbosa.DSCatalog.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+
 import java.util.HashSet;
 import java.util.Set;
 
 public class UserInsertDTO {
 
+    @NotBlank(message = "Campo obrigatório")
     private String firstName;
 
     private String lastName;
 
+    @Email(message = "Favor digitar email válido")
     private String email;
 
     private String password;

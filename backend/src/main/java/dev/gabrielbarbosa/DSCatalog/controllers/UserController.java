@@ -3,6 +3,7 @@ package dev.gabrielbarbosa.DSCatalog.controllers;
 import dev.gabrielbarbosa.DSCatalog.dto.UserDTO;
 import dev.gabrielbarbosa.DSCatalog.dto.UserInsertDTO;
 import dev.gabrielbarbosa.DSCatalog.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> insert(@RequestBody UserInsertDTO userDTO) {
+    public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO userDTO) {
         UserDTO user = userService.insert(userDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(user.getId()).toUri();
@@ -40,7 +41,7 @@ public class UserController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserInsertDTO userDTO) {
+    public ResponseEntity<UserDTO> update(@PathVariable Long id, @Valid  @RequestBody UserInsertDTO userDTO) {
         UserDTO user = userService.update(id, userDTO);
         return ResponseEntity.ok().body(user);
     }

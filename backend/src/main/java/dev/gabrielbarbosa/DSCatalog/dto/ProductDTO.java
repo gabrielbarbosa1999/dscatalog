@@ -2,6 +2,10 @@ package dev.gabrielbarbosa.DSCatalog.dto;
 
 import dev.gabrielbarbosa.DSCatalog.entities.Category;
 import dev.gabrielbarbosa.DSCatalog.entities.Product;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.time.Instant;
 import java.util.HashSet;
@@ -11,14 +15,18 @@ public class ProductDTO {
 
     private Long id;
 
+    @Size(min = 5, max = 60, message = "Deve ter entre 5 e 60 caracteres")
+    @NotBlank(message = "Campo obrigatório")
     private String name;
 
     private String description;
 
+    @Positive(message = "O preço deve ser um valor positivo")
     private Double price;
 
     private String imgUrl;
 
+    @PastOrPresent(message = "A data do produto não pode ser futura")
     private Instant date;
 
     private Set<CategoryDTO> categories = new HashSet<>();
