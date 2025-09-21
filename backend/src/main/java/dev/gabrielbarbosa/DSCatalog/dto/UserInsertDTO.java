@@ -1,5 +1,6 @@
 package dev.gabrielbarbosa.DSCatalog.dto;
 
+import dev.gabrielbarbosa.DSCatalog.services.validation.UserInsertValid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -7,6 +8,7 @@ import jakarta.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
+@UserInsertValid
 public class UserInsertDTO extends UserDTO {
 
     private String password;
